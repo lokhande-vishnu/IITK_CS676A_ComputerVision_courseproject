@@ -1,0 +1,261 @@
+Case 1:
+Training: 9232 images: PASCAL VOC 2012
+Testing: 2308 images: PASCAL VOC 2012
+Epoch = 10
+Scheme used for interpreting results: positive score = object detected
+Confusion matrices:
+[[      62      81]   43.357% 	[class: aeroplane]
+ [       8    2157]]  99.630% 	[class: not_aeroplane]
+
+[[      21      97]   17.797% 	[class: bicycle]
+ [       1    2189]]  99.954% 	[class: not_bicycle]
+
+[[       8     141]   5.369% 	[class: bird]
+ [       5    2154]]  99.768% 	[class: not_bird]
+
+ [[      14      87]   13.861% 	[class: boat]
+  [       7    2200]]  99.683% 	[class: not_boat]
+
+[[       0     189]   0.000% 	[class: bottle]
+ [       0    2119]]  100.000% 	[class: not_bottle]
+
+ [[      70      33]   67.961% 	[class: bus]
+  [      37    2168]]  98.322% 	[class: not_bus]
+
+[[     133     112]   54.286% 	[class: car]
+ [      94    1969]]  95.444% 	[class: not_car]
+
+[[     171      37]   82.212% 	[class: cat]
+ [     183    1917]]  91.286% 	[class: not_cat]
+
+[[      73     257]   22.121% 	[class: chair]
+ [      36    1942]]  98.180% 	[class: not_chair]
+
+[[       0      78]   0.000% 	[class: cow]
+ [       0    2230]]  100.000% 	[class: not_cow]
+
+[[       4     174]   2.247% 	[class: dining_table]
+ [       3    2127]]  99.859% 	[class: not_dining_table]
+
+[[      42     207]   16.867% 	[class: dog]
+ [      18    2041]]  99.126% 	[class: not_dog]
+
+[[      12      71]   14.458% 	[class: horse]
+ [       5    2220]]  99.775% 	[class: not_horse]
+
+[[      71      44]   61.739% 	[class: motorbike]
+ [      30    2163]]  98.632% 	[class: not_motorbike]
+
+[[     569     246]   69.816% 	[class: person]
+ [      32    1461]]  97.857% 	[class: not_person]
+
+[[      16     110]   12.698% 	[class: potted_plant]
+ [       6    2176]]  99.725% 	[class: not_potted_plant]
+
+[[       0      77]   0.000% 	[class: sheep]
+ [       0    2231]]  100.000% 	[class: not_sheep]
+
+[[       8     190]   4.040% 	[class: sofa]
+ [       8    2102]]  99.621% 	[class: not_sofa]
+
+[[      18     107]   14.400% 	[class: train]
+ [      15    2168]]  99.313% 	[class: not_train]
+
+[[      53      81]   39.552% 	[class: tv_monitor]
+ [      38    2136]]  98.252% 	[class: not_tv_monitor]
+
+CASE 2:
+Training: 5011 images: PASCAL VOC 2007
+Testing: 4592 images: PASCAL VOC 2007
+Epoch = 5
+Scheme used for interpreting results: maximum score = object detected
+Confusion matrices:
+[[       0     193]   0.000% 	[class: aeroplane]
+ [      11    4388]]  99.750% 	[class: not_aeroplane]
+
+[[       0     229]   0.000% 	[class: bicycle]
+ [       6    4357]]  99.862% 	[class: not_bicycle]
+
+[[       0     268]   0.000% 	[class: bird]
+ [       8    4316]]  99.815% 	[class: not_bird]
+
+[[       0     167]   0.000% 	[class: boat]
+ [       0    4425]]  100.000% 	[class: not_boat]
+
+[[       1     221]   0.450% 	[class: bottle]
+ [      13    4357]]  99.703% 	[class: not_bottle]
+
+[[       0     166]   0.000% 	[class: bus]
+ [       2    4424]]  99.955% 	[class: not_bus]
+
+[[      19     693]   2.669% 	[class: car]
+ [      94    3786]]  97.577% 	[class: not_car]
+
+[[       0     306]   0.000% 	[class: cat]
+ [       0    4286]]  100.000% 	[class: not_cat]
+
+[[       6     488]   1.215% 	[class: chair]
+ [      51    4047]]  98.755% 	[class: not_chair]
+
+[[       0     118]   0.000% 	[class: cow]
+ [       0    4474]]  100.000% 	[class: not_cow]
+
+[[       1     223]   0.446% 	[class: dining_table]
+ [      13    4355]]  99.702% 	[class: not_dining_table]
+
+[[       1     408]   0.244% 	[class: dog]
+ [      22    4161]]  99.474% 	[class: not_dog]
+
+[[       0     261]   0.000% 	[class: horse]
+ [      12    4319]]  99.723% 	[class: not_horse]
+
+[[       0     212]   0.000% 	[class: motorbike]
+ [       0    4380]]  100.000% 	[class: not_motorbike]
+
+[[    1803     148]   92.414% 	[class: person]
+ [    2487     154]]  5.831% 	[class: not_person]
+
+[[       0     238]   0.000% 	[class: potted_plant]
+ [       0    4354]]  100.000% 	[class: not_potted_plant]
+
+[[       0      93]   0.000% 	[class: sheep]
+ [       9    4490]]  99.800% 	[class: not_sheep]
+
+[[       3     325]   0.915% 	[class: sofa]
+ [      18    4246]]  99.578% 	[class: not_sofa]
+
+[[       0     241]   0.000% 	[class: train]
+ [       0    4351]]  100.000% 	[class: not_train]
+
+[[       2     227]   0.873% 	[class: tv_monitor]
+ [      10    4353]]  99.771% 	[class: not_tv_monitor]
+
+CASE 3:
+Training: 11540 images: PASCAL VOC 2012
+Testing: 4592 images: PASCAL VOC 2007
+Epoch = 5
+Scheme used for interpreting results: maximum score = object detected
+Confusion matrices:
+[[     123      82]   60.000% 	[class: aeroplane]
+ [      63    4684]]  98.673% 	[class: not_aeroplane]
+
+ [[      11     239]   4.400% 	[class: bicycle]
+ [       5    4697]]  99.894% 	[class: not_bicycle]
+
+[[      37     252]   12.803% 	[class: bird]
+ [      12    4651]]  99.743% 	[class: not_bird]
+
+[[      51     125]   28.977% 	[class: boat]
+ [      25    4751]]  99.477% 	[class: not_boat]
+
+[[       2     238]   0.833% 	[class: bottle]
+ [      19    4693]]  99.597% 	[class: not_bottle]
+
+[[      38     145]   20.765% 	[class: bus]
+ [      71    4698]]  98.511% 	[class: not_bus]
+
+[[     482     293]   62.194% 	[class: car]
+ [     224    3953]]  94.637% 	[class: not_car]
+
+[[     234      98]   70.482% 	[class: cat]
+ [     312    4308]]  93.247% 	[class: not_cat]
+
+[[     202     343]   37.064% 	[class: chair]
+ [     218    4189]]  95.053% 	[class: not_chair]
+
+[[      12     115]   9.449% 	[class: cow]
+ [      13    4812]]  99.731% 	[class: not_cow]
+
+[[       2     245]   0.810% 	[class: dining_table]
+ [      13    4692]]  99.724% 	[class: not_dining_table]
+
+[[      32     401]   7.390% 	[class: dog]
+ [      42    4477]]  99.071% 	[class: not_dog]
+
+[[       1     278]   0.358% 	[class: horse]
+ [       6    4667]]  99.872% 	[class: not_horse]
+
+[[       4     229]   1.717% 	[class: motorbike]
+ [      25    4694]]  99.470% 	[class: not_motorbike]
+
+[[    1708     389]   81.450% 	[class: person]
+ [     675    2180]]  76.357% 	[class: not_person]
+
+[[       5     249]   1.969% 	[class: potted_plant]
+ [       8    4690]]  99.830% 	[class: not_potted_plant]
+
+[[      32      66]   32.653% 	[class: sheep]
+ [      37    4817]]  99.238% 	[class: not_sheep]
+
+[[      16     339]   4.507% 	[class: sofa]
+ [      19    4578]]  99.587% 	[class: not_sofa]
+
+[[      53     206]   20.463% 	[class: train]
+ [      43    4650]]  99.084% 	[class: not_train]
+
+[[      37     218]   14.510% 	[class: tv_monitor]
+ [      40    4657]]  99.148% 	[class: not_tv_monitor]
+
+CASE 4:
+Training: 11540 images: PASCAL VOC 2012
+Testing: 4592 images: PASCAL VOC 2007
+Epoch = 5
+Scheme used for interpreting results: maximum score = object detected
+Comments: two more adaptation layers added
+Confusion matrices:
+[[       0     205]   0.000% 	[class: aeroplane]
+ [       0    4747]]  100.000% 	[class: not_aeroplane]
+
+ [[       0     250]   0.000% 	[class: bicycle]
+ [       0    4702]]  100.000% 	[class: not_bicycle]
+
+[[       0     289]   0.000% 	[class: bird]
+ [       0    4663]]  100.000% 	[class: not_bird]
+
+[[       0     240]   0.000% 	[class: bottle]
+ [       0    4712]]  100.000% 	[class: not_bottle]
+
+[[       0     183]   0.000% 	[class: bus]
+ [       0    4769]]  100.000% 	[class: not_bus]
+
+[[       0     775]   0.000% 	[class: car]
+ [       0    4177]]  100.000% 	[class: not_car]
+
+[[       0     332]   0.000% 	[class: cat]
+ [       0    4620]]  100.000% 	[class: not_cat]
+
+[[       0     545]   0.000% 	[class: chair]
+ [       0    4407]]  100.000% 	[class: not_chair]
+
+[[       0     127]   0.000% 	[class: cow]
+ [       0    4825]]  100.000% 	[class: not_cow]
+
+[[       0     247]   0.000% 	[class: dining_table]
+ [       0    4705]]  100.000% 	[class: not_dining_table]
+
+[[       0     433]   0.000% 	[class: dog]
+ [       0    4519]]  100.000% 	[class: not_dog]
+
+[[       0     279]   0.000% 	[class: horse]
+ [       0    4673]]  100.000% 	[class: not_horse]
+
+[[       0     233]   0.000% 	[class: motorbike]
+ [       0    4719]]  100.000% 	[class: not_motorbike]
+
+[[    2097       0]   100.000% 	[class: person]
+ [    2855       0]]  0.000% 	[class: not_person]
+
+[[       0     254]   0.000% 	[class: potted_plant]
+ [       0    4698]]  100.000% 	[class: not_potted_plant]
+
+[[       0      98]   0.000% 	[class: sheep]
+ [       0    4854]]  100.000% 	[class: not_sheep]
+
+[[       0     355]   0.000% 	[class: sofa]
+ [       0    4597]]  100.000% 	[class: not_sofa]
+
+[[       0     259]   0.000% 	[class: train]
+ [       0    4693]]  100.000% 	[class: not_train]
+
+[[       0     255]   0.000% 	[class: tv_monitor]
+ [       0    4697]]  100.000% 	[class: not_tv_monitor]

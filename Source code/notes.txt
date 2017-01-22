@@ -1,0 +1,257 @@
+f11reducing the model size and testing
+-remove layers in featex 
+ -nil - assign nil and then collect garbage
+ -save reduced layers - this is being done 
+22modifying train
+
+33Modify adaptation layers
+
+
+
+new inventions
+We can add functions in neuralnet object
+tried different architecture
+
+1.Look into the post train code and see if any changes can be done
+2.Find pretrained dataset
+3.Use simple SVM for post training
+4.Delete layers in 1512 dataset
+4.Runnin the code using latest torch
+
+
+
+imagenet dataset 1.2 million images with 1000 categories. Better to find pretrained dataset
+transfer learning--http://cs231n.github.io/transfer-learning/
+- convnet as feature extractor
+-fine tuning of convnet
+Continue training backwards and fine tune initial layers
+Keeping in mind that ConvNet features are more generic in early layers and more original-dataset-specific in later layers
+
+Not installing anything in torch-rocks
+
+reduced the number of imagenet layers to 3 from 7
+Training is working
+
+Initial mem- 450mb
+Aftertraining mem- 1226mb
+
+foo:bar() is the same as foo.bar(foo) 
+
+softmax makes a probability vector 
+
+>6GB systems
+adarsh chuahan
+sidharth malhotra 
+
+
+Main contributions of the paper are
+1. Sliding window multisclaing for object localisation
+
+
+Aeroplane	327	432	343	433	670	865	-	-
+Bicycle	268	353	284	358	552	711	-	-
+Bird	395	560	370	559	765	1119	-	-
+Boat	260	426	248	424	508	850	-	-
+Bottle	365	629	341	630	706	1259	-	-
+Bus	213	292	208	301	421	593	-	-
+Car	590	1013	571	1004	1161	2017	-	-
+Cat	539	605	541	612	1080	1217	-	-
+Chair	566	1178	553	1176	1119	2354	-	-
+Cow	151	290	152	298	303	588	-	-
+Diningtable	269	304	269	305	538	609	-	-
+Dog	632	756	654	759	1286	1515	-	-
+Horse	237	350	245	360	482	710	-	-
+Motorbike	265	357	261	356	526	713	-	-
+Person	1994	4194	2093	4372	4087	8566	-	-
+Pottedplant	269	484	258	489	527	973	-	-
+Sheep	171	400	154	413	325	813	-	-
+Sofa	257	281	250	285	507	566	-	-
+Train	273	313	271	315	544	628	-	-
+Tvmonitor	290	392	285	392	575	784	-	-
+
+
+
+
+So what does change? ConvNet architectures make the explicit assumption that the inputs are images, which allows us to encode certain properties into the architecture. These then make the forward function more efficient to implement and vastly reduces the amount of parameters in the network.
+Convnets are specifically made for images
+
+Visualisation of the Convnets
+For ReLU networks, the activations usually start out looking relatively blobby and dense, but as the training progresses the activations usually become more sparse and localized. 
+
+Notice that the first-layer weights are very nice and smooth, indicating nicely converged network. The color/grayscale features are clustered because the AlexNet contains two separate streams of processing, and an apparent consequence of this architecture is that one stream develops high-frequency grayscale features and the other low-frequency color features. The 2nd CONV layer weights are not as interpretible, but it is apparent that they are still smooth, well-formed, and absent of noisy patterns. 
+
+ConvNets can be interpreted as gradually transforming the images into a representation in which the classes are separable by a linear classifier. 
+
+As the global stride of the network is 32 pixels, adding 32 pixels to the image width or height increases the width or height of the output score map by one
+
+
+error use average of log sum values 6.3497
+
+
+
+
+model.network.modules[2].modules[3].modules[7].output 4x1x1x20
+model.network.modules[2].modules[3].modules[5].output returns 4x42x42x20
+
+model.network.modules[2].modules[3].modules[5].output:select(1,3) returns 42x42x20
+
+model.network.modules[2].modules[3].modules[5].output:select(1,3):select(3,15) return 42x42
+
+-- detect positive values of previous layers
+for _, scale in ipairs(scales) do
+	print('scale : '..scale)
+	model('jittering'):setScales(scale,scale,scale)
+	b,tgt=model:getTestBatch(97)
+      	model:forward(b)
+	bfmp=model.network.modules[2].modules[3].modules[5].output:select(1,3):select(3,15)
+	count=0
+	for i = 1,bfmp:size()[1] do
+		for j = 1,bfmp:size()[2] do
+			if bfmp[i][j] >= 0 then
+			count = count + 1
+			--print(bfmp[i][j])
+			end
+		end
+	end
+	print(count)
+end
+
+Ask sir on multi-label classification
+Our Intuition is, we are training out weights to match the prediction vector
+
+
+For three person image these are the number of images based on max
+scale : 0.5	
+14	
+scale : 0.7	
+34	
+scale : 1	
+46	
+scale : 1.4	
+62	
+scale : 2	
+73	
+scale : 2.8	
+52	
+
+
+-- detect local maximum values of positive values of previous layers
+for _, scale in ipairs(scales) do
+	print('scale : '..scale)
+	model('jittering'):setScales(scale,scale,scale)
+	b,tgt=model:getTestBatch(97)
+      	model:forward(b)
+	bfmp=model.network.modules[2].modules[3].modules[5].output:select(1,3):select(3,15)
+	count=0
+	for i = 1+1,bfmp:size()[1]-1 do
+		for j = 1+1,bfmp:size()[2]-1 do
+			if bfmp[i][j] >= 0 then
+				if bfmp[i][j]>bfmp[i][j-1] and bfmp[i][j]>bfmp[i-1][j] and bfmp[i][j]>bfmp[i][j+1] and bfmp[i][j]>bfmp[i+1][j] then
+				count = count + 1
+				end
+			end
+		end
+	end
+	print(count)
+end
+scale : 0.5	
+1	
+scale : 0.7	
+3	
+scale : 1	
+7	
+scale : 1.4	
+9	
+scale : 2	
+8	
+scale : 2.8	
+13
+
+ssh -X gpuuser1@csews50.cse.iitk.ac.in
+
+COUNT DATASET FORMATION
+matio = require 'matio'
+t = matio.load('classmap_train_1.mat')
+torch.save('vsr.t7', t)
+torch.load('vsr.t7')
+matio.save('test1.mat',data)
+
+
+Two ways t approach memory problem
+1. laod in 500 samples and accumulate the memory (1GB data)(suprs loading not affecting nvidia memory) and test on the same dataset and report accuracies
+2. Load array wise with no memory accumulation
+3. Resize image to 100x100
+4. Test the Pascal VOC 2007 dataset
+5. modify the cost function parameter. 500 image size thing
+
+Looking into variables to find the error
+Found some difference in datatable
+=foo
+table: 0x40e229e8 {
+  classmap_train : DoubleTensor - size: 500x250000
+}
+ =datatable
+table: 0x41eb9aa8 {
+  1 : table: 0x402adda8 {
+.jpg  1 : /data/gpuuser1/voc12-trainval/VOC2012/JPEGImages/2008_000002
+      2 : FloatTensor - size: 500
+    }
+  2 : table: 0x402adde8 {
+.jpg  1 : /data/gpuuser1/voc12-trainval/VOC2012/JPEGImages/2008_000003
+      2 : FloatTensor - size: 500
+    }
+soln: used notepad++ to replace CRLF with just LF
+
+
+
+Problem with the size , hence reaizing the image
+but resize doesn't preserve the sum, 
+hence will be doing post processing back in maltab or another way can be to do post processing in 
+klua itself:: Not true for both 1 values and 1/4 values
+
+current plan--
+10x15 when integraated doesn't give the number of objects so I have to resize it back.
+
+countmap_500_16::input image is 300x500. It should learn it's rescaled map for 10x15. Result is garbage values. May be need to put some sigmoid correction or something
+
+input image is 300x500. It should learn it's rescaled map for 100x150. (DID NOT CHECK)
+
+
+count_501_4::Image resized to 100x150, annotations also resized to the same, No of final layers will be 100x150. Butrecieved out of memeory problem. Unable to learn thos many layers. Hence reduced the layers to most minimum. 2048 reduced to 256. All small negative values. May be from large array detecting small elements is not possible. Most of the images have only single objects
+
+May be for this kind of architecture may not be used for count prediction
+
+Image resized to 50x100. pUTTINHG 1000 VALUE AND TESTING.
+
+IDEA2
+
+Should not learn individually but has to learn the enitire layer. Spatial preservation has to be done
+
+
+
+
+
+
+FINAL RESULTS SHOW (Confusion Matrices)
+Implementaion 
+3. VOC 2007 
+2. Change of parameter testing on VOC2007 dataset
+
+Experimentaton
+final view:: Big picture, Is object number also free
+
+
+
+
+
+some 500x500 within image, tryng to corrct it Bytetensor i sone form of tensor, looking into batch7, whether size is preserved or not
+
+Varitions in
+- extent of coverage
+- values of 1000
+- architecture
+
+Produce the heat maps
+
+idea2
+image, output of the same dimension
